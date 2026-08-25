@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Navigate, useLocation, useNavigate, type Location } from 'react-router-dom'
-import { AlertCircle, LockKeyhole } from 'lucide-react'
+import { Link, Navigate, useLocation, useNavigate, type Location } from 'react-router-dom'
+import { AlertCircle, ArrowLeft, LockKeyhole } from 'lucide-react'
 import { loginSchema, type LoginFormValues } from '../../lib/validation'
 import { supabase } from '../../lib/supabaseClient'
 import { useAuth } from '../../context/AuthContext'
@@ -42,6 +42,14 @@ export function AdminLoginPage() {
   return (
     <div className="flex min-h-[80vh] items-center justify-center py-16">
       <Container className="max-w-sm">
+        <Link
+          to="/"
+          className="mb-4 inline-flex items-center gap-1.5 text-sm font-medium text-plum-600 hover:text-plum-900"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to home
+        </Link>
+
         <div className="rounded-2xl border border-plum-100 bg-cream-50 p-8 shadow-soft">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-plum-100 text-plum-700">
             <LockKeyhole className="h-6 w-6" />
