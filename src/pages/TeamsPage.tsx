@@ -12,7 +12,7 @@ export function TeamsPage() {
           align="center"
           eyebrow="Serving Teams"
           title="Nine teams. One family. Every gift welcome."
-          description="Every team plays a real part in the life of MSF Fellowship. Explore each one below, then apply to the team where you feel called to serve."
+          description="Every team plays a real part in the life of Medical Students Fellowship. Explore each one below, then apply to the team where you feel called to serve."
         />
 
         <motion.div

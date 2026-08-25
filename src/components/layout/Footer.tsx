@@ -10,7 +10,7 @@ export function Footer() {
     <footer className="border-t border-plum-100 bg-plum-950 text-cream-100">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-3">
         <div>
-          <p className="font-display text-lg font-semibold text-cream-50">MSF Fellowship</p>
+          <p className="font-display text-lg font-semibold text-cream-50">Medical Students Fellowship</p>
           <p className="mt-3 max-w-xs text-sm text-plum-200">
             Serving God, serving one another. A place to grow, belong, and find your part to play.
           </p>
@@ -59,7 +59,7 @@ export function Footer() {
       <div className="border-t border-plum-800 py-6">
         <Container>
           <p className="text-center text-xs text-plum-300">
-            &copy; {year} MSF Fellowship. All rights reserved.
+            &copy; {year} Medical Students Fellowship. All rights reserved.
           </p>
         </Container>
       </div>

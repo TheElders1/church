@@ -40,7 +40,7 @@ export function TermsPage() {
         <SectionHeading
           eyebrow="Before you apply"
           title="Terms of Application"
-          description="Serving on a team at MSF Fellowship is a commitment. By applying, you agree to the following terms, which help every team serve well and stay unified."
+          description="Serving on a team at Medical Students Fellowship is a commitment. By applying, you agree to the following terms, which help every team serve well and stay unified."
         />
 
         <ol className="mt-10 space-y-5">

@@ -58,7 +58,7 @@ export function ApplicationForm({ defaultTeam }: ApplicationFormProps) {
           Application received!
         </h3>
         <p className="mx-auto mt-2 max-w-md text-plum-700">
-          Thank you for applying to serve with MSF Fellowship. A team leader will review your
+          Thank you for applying to serve with Medical Students Fellowship. A team leader will review your
           application and reach out to you soon.
         </p>
         <Button className="mt-6" onClick={() => reset()}>

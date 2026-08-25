@@ -56,7 +56,7 @@ export function HomePage() {
               transition={{ duration: 0.6 }}
               className="mx-auto mt-6 max-w-xl text-balance text-lg text-plum-100"
             >
-              MSF Fellowship exists to build a community of believers who know Christ and make
+              Medical Students Fellowship exists to build a community of believers who know Christ and make
               Him known — growing together in faith, and finding a place to use our gifts in
               service to one another and to God.
             </motion.p>
@@ -82,7 +82,7 @@ export function HomePage() {
               <SectionHeading
                 eyebrow="Who we are"
                 title="A fellowship built on faith, family, and service"
-                description="MSF Fellowship is a community where members are discipled, cared for, and equipped to serve. We believe every member has a part to play — a gift to bring to the body — and our serving teams are where that calling finds a home."
+                description="Medical Students Fellowship is a community where members are discipled, cared for, and equipped to serve. We believe every member has a part to play — a gift to bring to the body — and our serving teams are where that calling finds a home."
               />
               <p className="mt-4 max-w-xl text-plum-700">
                 Whether it's welcoming a visitor at the door, leading worship, keeping our

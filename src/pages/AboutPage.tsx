@@ -10,8 +10,8 @@ export function AboutPage() {
       <Container>
         <SectionHeading
           eyebrow="About Us"
-          title="About MSF Fellowship"
-          description="MSF Fellowship is a community of believers committed to knowing Christ and making Him known. We gather to worship, grow in the Word, and serve one another — and we believe every member has a meaningful part to play in the life of the fellowship."
+          title="About Medical Students Fellowship"
+          description="Medical Students Fellowship is a community of believers committed to knowing Christ and making Him known. We gather to worship, grow in the Word, and serve one another — and we believe every member has a meaningful part to play in the life of the fellowship."
         />
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2">
