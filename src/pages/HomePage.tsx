@@ -42,7 +42,7 @@ export function HomePage() {
               className="mb-4 inline-flex items-center gap-2 rounded-full border border-plum-700 bg-plum-900/60 px-4 py-1.5 text-sm font-medium text-gold-200"
             >
               <Sparkles className="h-4 w-4" />
-              MSF Fellowship
+              Medical Students Fellowship
             </motion.p>
             <motion.h1
               variants={fadeUp}
