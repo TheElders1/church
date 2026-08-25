@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { Mail, Phone, Instagram } from 'lucide-react'
+import { Mail, Phone } from 'lucide-react'
 import { Container } from '../ui/Container'
+import { contactEmail, contactPhones, socialLinks } from '../../data/contact'
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -30,17 +31,28 @@ export function Footer() {
           <ul className="mt-3 space-y-2 text-sm text-plum-200">
             <li className="flex items-center gap-2">
               <Mail className="h-4 w-4 shrink-0" />
-              <span>info@msffellowship.org</span>
+              <span className="break-all">{contactEmail}</span>
             </li>
-            <li className="flex items-center gap-2">
-              <Phone className="h-4 w-4 shrink-0" />
-              <span>+234 000 000 0000</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <Instagram className="h-4 w-4 shrink-0" />
-              <span>@msffellowship</span>
-            </li>
+            {contactPhones.map((phone) => (
+              <li key={phone} className="flex items-center gap-2">
+                <Phone className="h-4 w-4 shrink-0" />
+                <span>{phone}</span>
+              </li>
+            ))}
           </ul>
+
+          <div className="mt-4 flex items-center gap-3">
+            {socialLinks.map((social) => (
+              <span
+                key={social.name}
+                title={`${social.name}: ${social.handle}`}
+                aria-label={`${social.name}: ${social.handle}`}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-plum-800 text-plum-200 hover:border-plum-600 hover:text-cream-50"
+              >
+                <social.icon className="h-4 w-4" />
+              </span>
+            ))}
+          </div>
         </div>
       </Container>
 

@@ -1,7 +1,8 @@
-import { Mail, Phone, Instagram } from 'lucide-react'
+import { Mail, Phone } from 'lucide-react'
 import { Container } from '../components/ui/Container'
 import { SectionHeading } from '../components/ui/SectionHeading'
 import { ContactForm } from '../components/contact/ContactForm'
+import { contactEmail, contactPhones, socialLinks } from '../data/contact'
 
 export function AboutPage() {
   return (
@@ -23,28 +24,30 @@ export function AboutPage() {
 
             <ul className="mt-6 space-y-4">
               <li className="flex items-center gap-3 text-plum-800">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-plum-100 text-plum-700">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-plum-100 text-plum-700">
                   <Mail className="h-5 w-5" />
                 </span>
-                <span>info@msffellowship.org</span>
+                <span className="break-all">{contactEmail}</span>
               </li>
-              <li className="flex items-center gap-3 text-plum-800">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-plum-100 text-plum-700">
-                  <Phone className="h-5 w-5" />
-                </span>
-                <span>+234 000 000 0000</span>
-              </li>
-              <li className="flex items-center gap-3 text-plum-800">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-plum-100 text-plum-700">
-                  <Instagram className="h-5 w-5" />
-                </span>
-                <span>@msffellowship</span>
-              </li>
+              {contactPhones.map((phone) => (
+                <li key={phone} className="flex items-center gap-3 text-plum-800">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-plum-100 text-plum-700">
+                    <Phone className="h-5 w-5" />
+                  </span>
+                  <span>{phone}</span>
+                </li>
+              ))}
+              {socialLinks.map((social) => (
+                <li key={social.name} className="flex items-center gap-3 text-plum-800">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-plum-100 text-plum-700">
+                    <social.icon className="h-5 w-5" />
+                  </span>
+                  <span className="break-all">
+                    {social.name} <span className="text-plum-500">{social.handle}</span>
+                  </span>
+                </li>
+              ))}
             </ul>
-            <p className="mt-4 text-xs text-plum-500">
-              (Placeholder contact details — to be replaced with the fellowship's official
-              information.)
-            </p>
           </div>
 
           <div>
