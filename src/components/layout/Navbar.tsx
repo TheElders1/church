@@ -30,8 +30,8 @@ export function Navbar() {
         >
           <img
             src="/logo.png"
-            alt="MSF Fellowship"
-            className="h-auto max-h-20 w-auto max-w-full md:max-h-16"
+            alt="Medical Students' Fellowship, UNIDEL"
+            className="h-auto max-h-24 w-auto max-w-full md:max-h-20"
           />
         </NavLink>
 

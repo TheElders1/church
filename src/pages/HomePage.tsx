@@ -26,7 +26,7 @@ export function HomePage() {
           className="pointer-events-none absolute inset-0 opacity-50"
           style={{
             backgroundImage:
-              'radial-gradient(circle at 15% 20%, rgba(233,181,99,0.25), transparent 40%), radial-gradient(circle at 85% 0%, rgba(64,127,221,0.4), transparent 45%)',
+              'radial-gradient(circle at 15% 20%, rgba(233,181,99,0.25), transparent 40%), radial-gradient(circle at 85% 0%, rgba(48,166,95,0.4), transparent 45%)',
           }}
         />
         <Container className="relative py-24 sm:py-32">

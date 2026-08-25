@@ -1,4 +1,4 @@
-import { Mail, Phone } from 'lucide-react'
+import { Compass, Mail, Phone, Target } from 'lucide-react'
 import { Container } from '../components/ui/Container'
 import { SectionHeading } from '../components/ui/SectionHeading'
 import { ContactForm } from '../components/contact/ContactForm'
@@ -13,6 +13,28 @@ export function AboutPage() {
           title="About MSF Fellowship"
           description="MSF Fellowship is a community of believers committed to knowing Christ and making Him known. We gather to worship, grow in the Word, and serve one another — and we believe every member has a meaningful part to play in the life of the fellowship."
         />
+
+        <div className="mt-16 grid gap-6 sm:grid-cols-2">
+          <div className="rounded-2xl border border-plum-100 bg-cream-50 p-6 shadow-soft sm:p-8">
+            <span className="inline-flex items-center gap-2 rounded-full bg-gold-100 px-4 py-1.5 text-sm font-semibold text-gold-800">
+              <Target className="h-4 w-4" />
+              Mission
+            </span>
+            <p className="mt-4 text-plum-800">
+              To inculcate spiritual discipline and order — a life of pursuit into God.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-plum-100 bg-cream-50 p-6 shadow-soft sm:p-8">
+            <span className="inline-flex items-center gap-2 rounded-full bg-gold-100 px-4 py-1.5 text-sm font-semibold text-gold-800">
+              <Compass className="h-4 w-4" />
+              Vision
+            </span>
+            <p className="mt-4 text-plum-800">
+              To raise students who, through the ways of prayer and the word, legislate the
+              counsel of Heaven here on Earth.
+            </p>
+          </div>
+        </div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-2">
           <div>
