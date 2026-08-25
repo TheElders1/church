@@ -22,9 +22,17 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-plum-100 bg-cream-50/90 backdrop-blur">
-      <Container className="flex items-center justify-between py-2.5">
-        <NavLink to="/" className="flex items-center" onClick={() => setOpen(false)}>
-          <img src="/logo.png" alt="MSF Fellowship" className="h-14 w-auto sm:h-16" />
+      <Container className="flex items-center justify-between gap-4 py-2.5">
+        <NavLink
+          to="/"
+          className="flex min-w-0 flex-1 items-center md:flex-none"
+          onClick={() => setOpen(false)}
+        >
+          <img
+            src="/logo.png"
+            alt="MSF Fellowship"
+            className="h-auto max-h-20 w-auto max-w-full md:max-h-16"
+          />
         </NavLink>
 
         <nav className="hidden items-center gap-8 md:flex">
