@@ -7,7 +7,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-plum-100 bg-plum-950 text-cream-100">
-      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-3">
         <div>
           <p className="font-display text-lg font-semibold text-cream-50">MSF Fellowship</p>
           <p className="mt-3 max-w-xs text-sm text-plum-200">
@@ -40,13 +40,6 @@ export function Footer() {
               <Instagram className="h-4 w-4 shrink-0" />
               <span>@msffellowship</span>
             </li>
-          </ul>
-        </div>
-
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-wider text-gold-300">Fellowship</p>
-          <ul className="mt-3 space-y-2 text-sm text-plum-200">
-            <li><Link to="/admin/login" className="hover:text-cream-50">Admin Login</Link></li>
           </ul>
         </div>
       </Container>
