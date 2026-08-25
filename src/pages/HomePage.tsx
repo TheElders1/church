@@ -14,12 +14,19 @@ const fadeUp = {
 export function HomePage() {
   return (
     <div>
-      <section className="relative overflow-hidden bg-plum-950 text-cream-50">
+      <section className="relative isolate overflow-hidden bg-plum-950 text-cream-50">
+        <img
+          src="/hero-worship.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover object-[center_25%] opacity-60 mix-blend-luminosity"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-plum-950/30 via-plum-950/60 to-plum-950" />
         <div
-          className="pointer-events-none absolute inset-0 opacity-40"
+          className="pointer-events-none absolute inset-0 opacity-50"
           style={{
             backgroundImage:
-              'radial-gradient(circle at 15% 20%, rgba(234,193,98,0.18), transparent 40%), radial-gradient(circle at 85% 0%, rgba(147,88,156,0.35), transparent 45%)',
+              'radial-gradient(circle at 15% 20%, rgba(233,181,99,0.25), transparent 40%), radial-gradient(circle at 85% 0%, rgba(64,127,221,0.4), transparent 45%)',
           }}
         />
         <Container className="relative py-24 sm:py-32">
