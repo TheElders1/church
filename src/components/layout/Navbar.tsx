@@ -23,8 +23,8 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-plum-100 bg-cream-50/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
-        <NavLink to="/" className="font-display text-lg font-semibold text-plum-900" onClick={() => setOpen(false)}>
-          MSF Fellowship
+        <NavLink to="/" className="flex items-center" onClick={() => setOpen(false)}>
+          <img src="/logo.png" alt="MSF Fellowship" className="h-10 w-auto sm:h-12" />
         </NavLink>
 
         <nav className="hidden items-center gap-8 md:flex">
