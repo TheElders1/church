@@ -22,32 +22,67 @@ export function AboutPage() {
               out — we'd love to hear from you.
             </p>
 
-            <ul className="mt-6 space-y-4">
-              <li className="flex items-center gap-3 text-plum-800">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-plum-100 text-plum-700">
-                  <Mail className="h-5 w-5" />
-                </span>
-                <span className="break-all">{contactEmail}</span>
-              </li>
-              {contactPhones.map((phone) => (
-                <li key={phone} className="flex items-center gap-3 text-plum-800">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-plum-100 text-plum-700">
-                    <Phone className="h-5 w-5" />
-                  </span>
-                  <span>{phone}</span>
-                </li>
-              ))}
-              {socialLinks.map((social) => (
-                <li key={social.name} className="flex items-center gap-3 text-plum-800">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-plum-100 text-plum-700">
-                    <social.icon className="h-5 w-5" />
-                  </span>
-                  <span className="break-all">
-                    {social.name} <span className="text-plum-500">{social.handle}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <div className="mt-6 rounded-2xl border border-plum-100 bg-cream-50 p-6 shadow-soft sm:p-8">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-plum-500">
+                  Email
+                </p>
+                <a
+                  href={`mailto:${contactEmail}`}
+                  className="mt-2 flex items-center gap-2.5 break-all text-plum-900 hover:text-plum-600"
+                >
+                  <Mail className="h-4 w-4 shrink-0 text-gold-600" />
+                  {contactEmail}
+                </a>
+              </div>
+
+              <div className="my-6 border-t border-plum-100" />
+
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-plum-500">
+                  Phone
+                </p>
+                <ul className="mt-2 space-y-2">
+                  {contactPhones.map((phone) => (
+                    <li key={phone}>
+                      <a
+                        href={`tel:${phone.replace(/\s+/g, '')}`}
+                        className="flex items-center gap-2.5 text-plum-900 hover:text-plum-600"
+                      >
+                        <Phone className="h-4 w-4 shrink-0 text-gold-600" />
+                        {phone}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="my-6 border-t border-plum-100" />
+
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-plum-500">
+                  Follow Us
+                </p>
+                <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+                  {socialLinks.map((social) => (
+                    <li
+                      key={social.name}
+                      className="flex min-w-0 items-center gap-2.5 rounded-xl bg-plum-50 px-3 py-2.5"
+                    >
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-plum-100 text-plum-700">
+                        <social.icon className="h-4 w-4" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium text-plum-900">{social.name}</p>
+                        <p className="truncate text-xs text-plum-600" title={social.handle}>
+                          {social.handle}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
 
           <div>
