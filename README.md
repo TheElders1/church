@@ -31,6 +31,13 @@ supabase/migrations/0001_init.sql   database schema + RLS policies
    email + password and check "Auto Confirm User". This is the login for
    `/admin`. There's no public admin sign-up — create every admin account
    this way.
+
+   For a handoff account (e.g. a default login given to the church, who
+   will set their own password once they take over): create it with a
+   throwaway default password, then use the **Change Password** button in
+   the `/admin` dashboard header (next to Sign out) to set the real one —
+   no Supabase dashboard access needed for that step. `supabase.auth
+   .updateUser({ password })` only requires the active signed-in session.
 4. Grab your API credentials from **Project Settings → API**: the Project
    URL and the `anon` `public` key.
 

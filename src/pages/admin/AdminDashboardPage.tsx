@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { LogOut, Search, AlertCircle } from 'lucide-react'
+import { LogOut, Search, AlertCircle, KeyRound } from 'lucide-react'
 import { supabase } from '../../lib/supabaseClient'
 import { useAuth } from '../../context/AuthContext'
 import { teams } from '../../data/teams'
@@ -8,6 +8,7 @@ import { Container } from '../../components/ui/Container'
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner'
 import { ApplicationsTable } from '../../components/admin/ApplicationsTable'
 import { ApplicationDetailModal } from '../../components/admin/ApplicationDetailModal'
+import { ChangePasswordModal } from '../../components/admin/ChangePasswordModal'
 
 export function AdminDashboardPage() {
   const { signOut } = useAuth()
@@ -18,6 +19,7 @@ export function AdminDashboardPage() {
   const [teamFilter, setTeamFilter] = useState('all')
   const [selected, setSelected] = useState<Application | null>(null)
   const [updating, setUpdating] = useState(false)
+  const [changingPassword, setChangingPassword] = useState(false)
 
   useEffect(() => {
     let active = true
@@ -84,14 +86,24 @@ export function AdminDashboardPage() {
               {applications.length} total application{applications.length === 1 ? '' : 's'}
             </p>
           </div>
-          <button
-            type="button"
-            onClick={() => signOut()}
-            className="inline-flex items-center gap-2 self-start rounded-full border border-plum-200 px-4 py-2 text-sm font-medium text-plum-700 hover:bg-plum-50 sm:self-auto"
-          >
-            <LogOut className="h-4 w-4" />
-            Sign out
-          </button>
+          <div className="flex gap-2 self-start sm:self-auto">
+            <button
+              type="button"
+              onClick={() => setChangingPassword(true)}
+              className="inline-flex items-center gap-2 rounded-full border border-plum-200 px-4 py-2 text-sm font-medium text-plum-700 hover:bg-plum-50"
+            >
+              <KeyRound className="h-4 w-4" />
+              Change Password
+            </button>
+            <button
+              type="button"
+              onClick={() => signOut()}
+              className="inline-flex items-center gap-2 rounded-full border border-plum-200 px-4 py-2 text-sm font-medium text-plum-700 hover:bg-plum-50"
+            >
+              <LogOut className="h-4 w-4" />
+              Sign out
+            </button>
+          </div>
         </div>
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -141,6 +153,8 @@ export function AdminDashboardPage() {
         onStatusChange={handleStatusChange}
         updating={updating}
       />
+
+      <ChangePasswordModal open={changingPassword} onClose={() => setChangingPassword(false)} />
     </div>
   )
 }
