@@ -31,6 +31,16 @@ const terms = [
     detail:
       'Take an active part in sharing the gospel and serving the wider community through outreach activities.',
   },
+  {
+    title: 'Not currently serving on a team elsewhere',
+    detail:
+      'You should not already be an active workforce/team member in your home church, or in another fellowship, while serving on a team here.',
+  },
+  {
+    title: 'Not a member of another fellowship',
+    detail:
+      "It's fine to belong to a church, but you should not be a member of another fellowship. Stay planted and grow where you already belong, rather than leaving one fellowship for another.",
+  },
 ]
 
 export function TermsPage() {
