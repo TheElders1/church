@@ -10,6 +10,7 @@ export type TeamId =
   | 'technical'
   | 'medical'
   | 'greeters'
+  | 'prayer'
 
 export interface Team {
   id: TeamId

@@ -144,7 +144,7 @@ export function ApplicationForm({ defaultTeam }: ApplicationFormProps) {
           {...register('reason')}
           rows={5}
           className={inputClass(!!errors.reason)}
-          placeholder="Tell us a little about yourself and why you'd like to serve on this team..."
+          placeholder="Tell us a little about yourself and why you'd like to serve in this team..."
         />
       </Field>
 

@@ -1,7 +1,7 @@
 # MSF Fellowship — Recruitment Website
 
 A recruitment site for MSF Fellowship's serving teams. Members can browse the
-nine serving teams and apply to join one; fellowship admins review and manage
+ten serving teams and apply to join one; fellowship admins review and manage
 applications from a protected dashboard.
 
 **Stack:** React + Vite + TypeScript, Tailwind CSS, Supabase (Postgres + Auth),
@@ -13,7 +13,7 @@ Framer Motion, react-hook-form + zod. Deploy target: Vercel.
 src/
   components/   layout, ui, teams, application, contact, and admin components
   pages/        one file per route (+ pages/admin for the dashboard)
-  data/teams.ts the 9 team definitions (name, description, responsibilities, icon)
+  data/teams.ts the 10 team definitions (name, description, responsibilities, icon)
   lib/          supabase client + zod validation schemas
   context/      auth context (wraps Supabase Auth session)
   types/        shared TypeScript types

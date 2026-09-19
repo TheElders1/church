@@ -2,7 +2,7 @@ import { Facebook, Music2, Send, Youtube, type LucideIcon } from 'lucide-react'
 
 export const contactEmail = 'medicalstudentsfellowshipagbor@gmail.com'
 
-export const contactPhones = ['+234 812 602 9352', '+234 915 925 4479', '+234 915 924 5538']
+export const contactPhones = ['+234 912 204 5854', '+234 805 427 7641', '+234 803 171 4574']
 
 export interface SocialLink {
   name: string

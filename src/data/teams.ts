@@ -8,6 +8,7 @@ import {
   Settings2,
   Stethoscope,
   Handshake,
+  Hand,
 } from 'lucide-react'
 import type { Team } from '../types'
 
@@ -137,6 +138,21 @@ export const teams: Team[] = [
       'Represent the fellowship\'s hospitality from the very first moment',
     ],
     icon: Handshake,
+  },
+  {
+    id: 'prayer',
+    name: 'Prayer Team',
+    tagline: 'Standing in the gap through prayer',
+    description:
+      'Cultivates a consistent prayer life among members and stands in intercession for students, the fellowship, the campus, and the work of the Gospel — offering a safe place to share prayer needs and support the fellowship\'s activities in prayer.',
+    responsibilities: [
+      'Cultivate personal and corporate prayer, encouraging every member toward a consistent prayer life',
+      'Intercede for students, the fellowship, the campus, families, and the work of the Gospel',
+      'Provide a safe place for members to share prayer needs and receive spiritual support',
+      'Gather at least once a week for prayer meetings, worship, and seeking God, except during special annual programs',
+      'Support evangelism and other fellowship activities through focused prayer outreach',
+    ],
+    icon: Hand,
   },
 ]
 

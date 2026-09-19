@@ -11,7 +11,7 @@ export function TeamsPage() {
         <SectionHeading
           align="center"
           eyebrow="Serving Teams"
-          title="Nine teams. One family. Every gift welcome."
+          title="Ten teams. One family. Every gift welcome."
           description="Every team plays a real part in the life of Medical Students Fellowship. Explore each one below, then apply to the team where you feel called to serve."
         />
 

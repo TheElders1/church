@@ -100,7 +100,7 @@ export function HomePage() {
             >
               <div className="rounded-2xl bg-plum-50 p-6 shadow-soft">
                 <Users className="h-8 w-8 text-plum-600" />
-                <p className="mt-4 font-display text-2xl font-semibold text-plum-900">9 Teams</p>
+                <p className="mt-4 font-display text-2xl font-semibold text-plum-900">10 Teams</p>
                 <p className="mt-1 text-sm text-plum-600">serving across every part of fellowship life</p>
               </div>
               <div className="mt-8 rounded-2xl bg-gold-50 p-6 shadow-soft">
@@ -119,7 +119,7 @@ export function HomePage() {
             align="center"
             eyebrow="Serving Teams"
             title="Find where you fit"
-            description="From ushering to worship, media to medical — explore all nine teams and discover where your gifts can serve the fellowship best."
+            description="From ushering to worship, media to medical — explore all ten teams and discover where your gifts can serve the fellowship best."
           />
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             {teams.map((team) => (
