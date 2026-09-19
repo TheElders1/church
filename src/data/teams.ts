@@ -146,11 +146,11 @@ export const teams: Team[] = [
     description:
       'Cultivates a consistent prayer life among members and stands in intercession for students, the fellowship, the campus, and the work of the Gospel — offering a safe place to share prayer needs and support the fellowship\'s activities in prayer.',
     responsibilities: [
-      'Cultivate personal and corporate prayer, encouraging every member toward a consistent prayer life',
-      'Intercede for students, the fellowship, the campus, families, and the work of the Gospel',
-      'Provide a safe place for members to share prayer needs and receive spiritual support',
-      'Gather at least once a week for prayer meetings, worship, and seeking God, except during special annual programs',
-      'Support evangelism and other fellowship activities through focused prayer outreach',
+      'Personal & Corporate Prayer: We pray together and encourage one another to develop a consistent prayer life.',
+      'Intercession: We stand in prayer for students, the fellowship, our campus, families, and the work of the Gospel.',
+      'Prayer Support: We provide a safe place for members to share prayer needs and receive spiritual support.',
+      'Prayer Meetings: We gather at least once a week for focused times of prayer, worship, and seeking God, with the exception of our special annual programs.',
+      'Prayer Outreach: We use prayer to prepare hearts and support evangelism and other fellowship activities.',
     ],
     icon: Hand,
   },

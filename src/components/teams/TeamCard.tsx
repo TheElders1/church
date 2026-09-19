@@ -43,12 +43,22 @@ export function TeamCard({ team }: { team: Team }) {
           transition={{ duration: 0.25 }}
           className="mt-3 space-y-2 overflow-hidden text-sm text-plum-700"
         >
-          {team.responsibilities.map((item) => (
-            <li key={item} className="flex gap-2">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400" />
-              <span>{item}</span>
-            </li>
-          ))}
+          {team.responsibilities.map((item) => {
+            const separatorIndex = item.indexOf(': ')
+            const hasLabel = separatorIndex !== -1
+            const label = hasLabel ? item.slice(0, separatorIndex) : null
+            const rest = hasLabel ? item.slice(separatorIndex + 2) : item
+
+            return (
+              <li key={item} className="flex gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400" />
+                <span>
+                  {label && <span className="font-semibold text-plum-900">{label}: </span>}
+                  {rest}
+                </span>
+              </li>
+            )
+          })}
         </motion.ul>
       )}
 
