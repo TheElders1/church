@@ -72,7 +72,7 @@ export const teams: Team[] = [
   {
     id: 'sanctuary',
     name: 'Sanctuary Team',
-    tagline: 'Preparing the house before He arrives',
+    tagline: 'Getting the sanctuary ready for worship',
     description:
       'Ensures the worship space is clean, arranged, and ready before every service and event, and properly secured and tidied afterward.',
     responsibilities: [
