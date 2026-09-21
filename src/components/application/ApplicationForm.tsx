@@ -28,11 +28,30 @@ export function ApplicationForm({ defaultTeam }: ApplicationFormProps) {
   })
 
   async function onSubmit(values: ApplicationFormValues) {
+    const file = values.photo[0]
+    const fileExt = file.name.split('.').pop()
+    const filePath = `${crypto.randomUUID()}.${fileExt}`
+
+    const { error: uploadError } = await supabase.storage
+      .from('applicant-photos')
+      .upload(filePath, file)
+
+    if (uploadError) {
+      setError('root', {
+        message:
+          'Something went wrong uploading your photo. Please check your connection and try again.',
+      })
+      throw uploadError
+    }
+
     const { error } = await supabase.from('applications').insert({
       full_name: values.full_name,
       email: values.email,
       phone: values.phone,
       age: values.age,
+      date_of_birth: values.date_of_birth,
+      sex: values.sex,
+      photo_path: filePath,
       team: values.team,
       reason: values.reason,
     })
@@ -124,7 +143,37 @@ export function ApplicationForm({ defaultTeam }: ApplicationFormProps) {
             placeholder="e.g. 24"
           />
         </Field>
+
+        <Field label="Date of birth" error={errors.date_of_birth?.message}>
+          <input
+            type="date"
+            {...register('date_of_birth')}
+            className={inputClass(!!errors.date_of_birth)}
+          />
+        </Field>
+
+        <Field label="Sex" error={errors.sex?.message}>
+          <select {...register('sex')} className={inputClass(!!errors.sex)} defaultValue="">
+            <option value="" disabled>
+              Select
+            </option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </Field>
       </div>
+
+      <Field label="A photograph of yourself" error={errors.photo?.message}>
+        <input
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          {...register('photo')}
+          className={inputClass(!!errors.photo)}
+        />
+        <span className="mt-1 block text-xs text-plum-500">
+          A clear, recent photo of your face (JPG, PNG, or WEBP, under 5MB).
+        </span>
+      </Field>
 
       <Field label="Team" error={errors.team?.message}>
         <select {...register('team')} className={inputClass(!!errors.team)} defaultValue="">

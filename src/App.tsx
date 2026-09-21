@@ -9,9 +9,11 @@ import { TeamsPage } from './pages/TeamsPage'
 import { TermsPage } from './pages/TermsPage'
 import { ApplyPage } from './pages/ApplyPage'
 import { AboutPage } from './pages/AboutPage'
+import { ReportPortalPage } from './pages/ReportPortalPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { AdminLoginPage } from './pages/admin/AdminLoginPage'
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage'
+import { AdminReportsPage } from './pages/admin/AdminReportsPage'
 
 function App() {
   const location = useLocation()
@@ -64,6 +66,14 @@ function App() {
               }
             />
             <Route
+              path="/reports"
+              element={
+                <PageTransition>
+                  <ReportPortalPage />
+                </PageTransition>
+              }
+            />
+            <Route
               path="/admin/login"
               element={
                 <PageTransition>
@@ -77,6 +87,16 @@ function App() {
                 <ProtectedRoute>
                   <PageTransition>
                     <AdminDashboardPage />
+                  </PageTransition>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/reports"
+              element={
+                <ProtectedRoute>
+                  <PageTransition>
+                    <AdminReportsPage />
                   </PageTransition>
                 </ProtectedRoute>
               }

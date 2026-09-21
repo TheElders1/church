@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { LogOut, Search, AlertCircle, KeyRound } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { LogOut, Search, AlertCircle, KeyRound, ClipboardList } from 'lucide-react'
 import { supabase } from '../../lib/supabaseClient'
 import { useAuth } from '../../context/AuthContext'
 import { teams } from '../../data/teams'
@@ -87,6 +88,13 @@ export function AdminDashboardPage() {
             </p>
           </div>
           <div className="flex gap-2 self-start sm:self-auto">
+            <Link
+              to="/admin/reports"
+              className="inline-flex items-center gap-2 rounded-full border border-plum-200 px-4 py-2 text-sm font-medium text-plum-700 hover:bg-plum-50"
+            >
+              <ClipboardList className="h-4 w-4" />
+              Reports
+            </Link>
             <button
               type="button"
               onClick={() => setChangingPassword(true)}

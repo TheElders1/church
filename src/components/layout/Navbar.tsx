@@ -10,6 +10,7 @@ const links = [
   { to: '/terms', label: 'Terms' },
   { to: '/apply', label: 'Apply' },
   { to: '/about', label: 'About & Contact' },
+  { to: '/reports', label: 'Reports' },
 ]
 
 export function Navbar() {

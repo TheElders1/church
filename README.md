@@ -18,15 +18,20 @@ src/
   context/      auth context (wraps Supabase Auth session)
   types/        shared TypeScript types
 supabase/migrations/0001_init.sql   database schema + RLS policies
+supabase/migrations/0002_reports_and_applicant_fields.sql
+                                     photo/DOB/sex fields, Counseling & PR
+                                     auto-add, access codes, report portal
 ```
 
 ## 1. Set up Supabase
 
 1. Create a project at [supabase.com](https://supabase.com).
-2. In the SQL editor, run `supabase/migrations/0001_init.sql`. This creates
-   the `applications` and `contact_messages` tables with Row Level Security
-   enabled: anyone can submit a form, but only signed-in users can read or
-   update applications.
+2. In the SQL editor, run `supabase/migrations/0001_init.sql`, then
+   `supabase/migrations/0002_reports_and_applicant_fields.sql` (in that
+   order — 0002 depends on 0001). Together these create the
+   `applications`, `contact_messages`, and `follow_up_reports` tables with
+   Row Level Security enabled, a private `applicant-photos` storage bucket,
+   and the report-portal database functions described below.
 3. Create an admin account: **Authentication → Users → Add user**. Set an
    email + password and check "Auto Confirm User". This is the login for
    `/admin`. There's no public admin sign-up — create every admin account
@@ -80,3 +85,27 @@ later from the same Vercel project settings — no code changes needed.
   (`info@msffellowship.org`, phone, `@msffellowship`) are placeholders —
   swap them for the fellowship's real details in `src/pages/AboutPage.tsx`
   and `src/components/layout/Footer.tsx`.
+
+## Counseling & Follow-up report portal
+
+- Applying now also requires a photo (stored in the private
+  `applicant-photos` bucket), date of birth, and sex.
+- Whenever an admin marks ANY application as **Accepted**, a database
+  trigger automatically also enrolls that person (Accepted) on the
+  **Counseling and Public Relations Team**, unless they're already on it.
+- Being Accepted on that team auto-generates a unique 6-character
+  **access code** — shown in the admin dashboard's application detail
+  panel (with a Copy button) so it can be sent to the person directly
+  (there's no email automation for this yet).
+- That code is the password into `/reports`, a public page where they can
+  submit their weekly follow-up report (the six questions the fellowship
+  gave) and review — but not edit — their past reports. Submissions close
+  at 11:59pm Sunday (Africa/Lagos time), enforced both in the UI and in the
+  database function itself.
+- Admins can see every submitted report at `/admin/reports` (linked from
+  the main Applications dashboard).
+- There's no real member login system — the access code is a shared
+  secret, not a full account. All of the report-portal logic lives in
+  `SECURITY DEFINER` Postgres functions (`report_portal_login`,
+  `report_portal_submit`) so the report data itself is never exposed via
+  an open table policy, only through those two functions.

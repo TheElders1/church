@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { X } from 'lucide-react'
+import { X, Copy, Check } from 'lucide-react'
 import type { Application, ApplicationStatus } from '../../types'
 import { APPLICATION_STATUSES } from '../../types'
+import { supabase } from '../../lib/supabaseClient'
 import { StatusBadge } from './StatusBadge'
 
 interface ApplicationDetailModalProps {
@@ -17,6 +19,34 @@ export function ApplicationDetailModal({
   onStatusChange,
   updating,
 }: ApplicationDetailModalProps) {
+  const [photoUrl, setPhotoUrl] = useState<string | null>(null)
+  const [codeCopied, setCodeCopied] = useState(false)
+
+  useEffect(() => {
+    setPhotoUrl(null)
+    setCodeCopied(false)
+    if (!application?.photo_path) return
+
+    let active = true
+    supabase.storage
+      .from('applicant-photos')
+      .createSignedUrl(application.photo_path, 60 * 10)
+      .then(({ data }) => {
+        if (active && data) setPhotoUrl(data.signedUrl)
+      })
+    return () => {
+      active = false
+    }
+  }, [application?.photo_path])
+
+  function copyCode() {
+    if (!application?.access_code) return
+    navigator.clipboard.writeText(application.access_code).then(() => {
+      setCodeCopied(true)
+      setTimeout(() => setCodeCopied(false), 2000)
+    })
+  }
+
   return (
     <AnimatePresence>
       {application && (
@@ -36,17 +66,26 @@ export function ApplicationDetailModal({
             className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-cream-50 p-6 shadow-soft sm:p-8"
           >
             <div className="flex items-start justify-between gap-4">
-              <div>
-                <h2 className="font-display text-xl font-semibold text-plum-900">
-                  {application.full_name}
-                </h2>
-                <p className="mt-1 text-sm text-plum-600">
-                  Applied {new Date(application.created_at).toLocaleDateString(undefined, {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </p>
+              <div className="flex items-center gap-4">
+                {photoUrl && (
+                  <img
+                    src={photoUrl}
+                    alt={application.full_name}
+                    className="h-16 w-16 shrink-0 rounded-full object-cover"
+                  />
+                )}
+                <div>
+                  <h2 className="font-display text-xl font-semibold text-plum-900">
+                    {application.full_name}
+                  </h2>
+                  <p className="mt-1 text-sm text-plum-600">
+                    Applied {new Date(application.created_at).toLocaleDateString(undefined, {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </p>
+                </div>
               </div>
               <button
                 type="button"
@@ -62,12 +101,38 @@ export function ApplicationDetailModal({
               <Row label="Email" value={application.email} />
               <Row label="Phone" value={application.phone} />
               <Row label="Age" value={String(application.age)} />
+              <Row label="Date of birth" value={application.date_of_birth} />
+              <Row label="Sex" value={application.sex} />
               <Row label="Team" value={application.team} />
               <div>
                 <dt className="font-medium text-plum-500">Why they want to join</dt>
                 <dd className="mt-1 whitespace-pre-wrap text-plum-800">{application.reason}</dd>
               </div>
             </dl>
+
+            {application.access_code && (
+              <div className="mt-6 rounded-xl border border-gold-300 bg-gold-50 p-4">
+                <p className="text-sm font-medium text-plum-700">
+                  Counseling &amp; Follow-up report portal access code
+                </p>
+                <p className="mt-1 text-xs text-plum-600">
+                  Share this with them so they can log in at /reports.
+                </p>
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="rounded-lg bg-cream-50 px-3 py-1.5 font-mono text-base tracking-widest text-plum-900">
+                    {application.access_code}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={copyCode}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-plum-200 px-3 py-1.5 text-xs font-medium text-plum-700 hover:bg-plum-50"
+                  >
+                    {codeCopied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+                    {codeCopied ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+              </div>
+            )}
 
             <div className="mt-6">
               <p className="mb-2 text-sm font-medium text-plum-500">Status</p>
@@ -88,6 +153,12 @@ export function ApplicationDetailModal({
                   ))}
                 </select>
               </div>
+              {application.team !== 'Counseling and Public Relations Team' && (
+                <p className="mt-2 text-xs text-plum-500">
+                  Marking this as Accepted also automatically enrolls them on the Counseling and
+                  Public Relations Team for follow-up.
+                </p>
+              )}
             </div>
           </motion.div>
         </motion.div>
