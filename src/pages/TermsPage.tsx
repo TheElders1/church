@@ -32,9 +32,9 @@ const terms = [
       'Take an active part in sharing the gospel and serving the wider community through outreach activities.',
   },
   {
-    title: 'Not currently serving on a team elsewhere',
+    title: 'Not currently serving in a team elsewhere',
     detail:
-      'You should not already be an active workforce/team member in your home church, or in another fellowship, while serving on a team here.',
+      'You should not already be an active workforce/team member in your home church, or in another fellowship, while serving in a team here.',
   },
   {
     title: 'Not a member of another fellowship',
