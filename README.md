@@ -21,17 +21,20 @@ supabase/migrations/0001_init.sql   database schema + RLS policies
 supabase/migrations/0002_reports_and_applicant_fields.sql
                                      photo/DOB/sex fields, Counseling & PR
                                      auto-add, access codes, report portal
+supabase/migrations/0003_allow_application_delete.sql
+                                     lets admins delete applications from
+                                     the dashboard
 ```
 
 ## 1. Set up Supabase
 
 1. Create a project at [supabase.com](https://supabase.com).
-2. In the SQL editor, run `supabase/migrations/0001_init.sql`, then
-   `supabase/migrations/0002_reports_and_applicant_fields.sql` (in that
-   order — 0002 depends on 0001). Together these create the
-   `applications`, `contact_messages`, and `follow_up_reports` tables with
-   Row Level Security enabled, a private `applicant-photos` storage bucket,
-   and the report-portal database functions described below.
+2. In the SQL editor, run the migrations in `supabase/migrations/` **in
+   numeric order** (0001, then 0002, then 0003 — each depends on the one
+   before it). Together these create the `applications`,
+   `contact_messages`, and `follow_up_reports` tables with Row Level
+   Security enabled, a private `applicant-photos` storage bucket, and the
+   report-portal database functions described below.
 3. Create an admin account: **Authentication → Users → Add user**. Set an
    email + password and check "Auto Confirm User". This is the login for
    `/admin`. There's no public admin sign-up — create every admin account

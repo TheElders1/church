@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { X, Copy, Check } from 'lucide-react'
+import { X, Copy, Check, Trash2, AlertTriangle } from 'lucide-react'
 import type { Application, ApplicationStatus } from '../../types'
 import { APPLICATION_STATUSES } from '../../types'
 import { supabase } from '../../lib/supabaseClient'
@@ -10,21 +10,27 @@ interface ApplicationDetailModalProps {
   application: Application | null
   onClose: () => void
   onStatusChange: (id: string, status: ApplicationStatus) => void
+  onDelete: (id: string) => void
   updating: boolean
+  deleting: boolean
 }
 
 export function ApplicationDetailModal({
   application,
   onClose,
   onStatusChange,
+  onDelete,
   updating,
+  deleting,
 }: ApplicationDetailModalProps) {
   const [photoUrl, setPhotoUrl] = useState<string | null>(null)
   const [codeCopied, setCodeCopied] = useState(false)
+  const [confirmingDelete, setConfirmingDelete] = useState(false)
 
   useEffect(() => {
     setPhotoUrl(null)
     setCodeCopied(false)
+    setConfirmingDelete(false)
     if (!application?.photo_path) return
 
     let active = true
@@ -158,6 +164,49 @@ export function ApplicationDetailModal({
                   Marking this as Accepted also automatically enrolls them on the Counseling and
                   Public Relations Team for follow-up.
                 </p>
+              )}
+            </div>
+
+            <div className="mt-6 border-t border-plum-100 pt-6">
+              {confirmingDelete ? (
+                <div className="rounded-xl border border-red-200 bg-red-50 p-4">
+                  <div className="flex items-start gap-2 text-sm text-red-700">
+                    <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+                    <p>
+                      Delete this application permanently? This can&apos;t be undone
+                      {application.access_code
+                        ? ', and will also delete any follow-up reports they submitted.'
+                        : '.'}
+                    </p>
+                  </div>
+                  <div className="mt-3 flex gap-2">
+                    <button
+                      type="button"
+                      disabled={deleting}
+                      onClick={() => onDelete(application.id)}
+                      className="rounded-full bg-red-600 px-4 py-1.5 text-xs font-medium text-white hover:bg-red-700 disabled:opacity-60"
+                    >
+                      {deleting ? 'Deleting...' : 'Yes, delete it'}
+                    </button>
+                    <button
+                      type="button"
+                      disabled={deleting}
+                      onClick={() => setConfirmingDelete(false)}
+                      className="rounded-full border border-plum-200 px-4 py-1.5 text-xs font-medium text-plum-700 hover:bg-plum-50"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setConfirmingDelete(true)}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-red-600 hover:text-red-700"
+                >
+                  <Trash2 className="h-4 w-4" />
+                  Delete application
+                </button>
               )}
             </div>
           </motion.div>

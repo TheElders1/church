@@ -20,6 +20,7 @@ export function AdminDashboardPage() {
   const [teamFilter, setTeamFilter] = useState('all')
   const [selected, setSelected] = useState<Application | null>(null)
   const [updating, setUpdating] = useState(false)
+  const [deleting, setDeleting] = useState(false)
   const [changingPassword, setChangingPassword] = useState(false)
 
   useEffect(() => {
@@ -73,6 +74,17 @@ export function AdminDashboardPage() {
       setSelected((prev) => (prev && prev.id === id ? { ...prev, status } : prev))
     }
     setUpdating(false)
+  }
+
+  async function handleDelete(id: string) {
+    setDeleting(true)
+    const { error: deleteError } = await supabase.from('applications').delete().eq('id', id)
+
+    if (!deleteError) {
+      setApplications((prev) => prev.filter((app) => app.id !== id))
+      setSelected(null)
+    }
+    setDeleting(false)
   }
 
   return (
@@ -159,7 +171,9 @@ export function AdminDashboardPage() {
         application={selected}
         onClose={() => setSelected(null)}
         onStatusChange={handleStatusChange}
+        onDelete={handleDelete}
         updating={updating}
+        deleting={deleting}
       />
 
       <ChangePasswordModal open={changingPassword} onClose={() => setChangingPassword(false)} />
